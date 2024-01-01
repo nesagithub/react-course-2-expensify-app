@@ -1,0 +1,21 @@
+const add = (a, b) => a + b
+const generateGreeting = (name = 'Anonimus') => `Hello ${name}!`
+
+//funkcija test ima 2 argumenta - 1. name (string), 2.code to run (arrow function)
+test('Should add 2 numebers', () => {
+  const result= add(3,4)
+  // if(result !== 7) {
+    // throw new Error(`The result was ${result}. Expected: 7`)
+  // }
+  expect(result).toBe(7)
+})
+
+test('Sould print a name', () => {
+  const result = generateGreeting('Nesa')
+  expect(result).toBe('Hello Nesa!')
+})
+
+test('Sould print a "Anonimus"', () => {
+  const result = generateGreeting()
+  expect(result).toBe('Hello Anonimus!')
+})
