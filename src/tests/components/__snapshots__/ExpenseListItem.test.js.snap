@@ -17,9 +17,9 @@ exports[`expense list item render 1`] = `
     </strong>
   </p>
   <p>
-    195
-     - 
-    0
+    $1.95
+    -
+    January 1st, 1970
   </p>
   <p />
   <hr />
