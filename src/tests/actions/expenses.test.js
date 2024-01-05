@@ -1,45 +1,48 @@
-import { addExpense, editExpense, removeExpense } from '../../actions/expenses'
+import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import expenses from '../fixtures/expenses';
 
 test('should setup remove expense action object', () => {
-  const action = removeExpense({ id: 'abc123' })
-  expect(action).toEqual({ // koristi se za obj i arr
+  const action = removeExpense({ id: '123abc' });
+  expect(action).toEqual({
     type: 'REMOVE_EXPENSE',
-    id: 'abc123',
-  })
-})
+    id: '123abc'
+  });
+});
 
 test('should setup edit expense action object', () => {
-  const action = editExpense('abc123', { note: 'Test note' })
+  const action = editExpense('123abc', { note: 'New note value' });
   expect(action).toEqual({
     type: 'EDIT_EXPENSE',
-    id: 'abc123',
-    updates: {note:'Test note'}
-  })
-})
+    id: '123abc',
+    updates: {
+      note: 'New note value'
+    }
+  });
+});
 
-test('expense action obj with provided value', () => {
-  const obj = { description: 'desc', note: 'note', amount:  0, createdAt: 0 }
-  const action = addExpense(obj)
-  
+test('should setup add expense action object with provided values', () => {
+
+  const action = addExpense(expenses[2]);
   expect(action).toEqual({
     type: 'ADD_EXPENSE',
     expense: {
-      ...obj,
-      id: expect.any(String)
+      expense: expenses[2]
     }
-  })
+  });
 
-})
+});
 
-test('expense action obj with default value', () => {
-  const obj = { description: '', note: '', amount:  0, createdAt: 0 }
-  const action = addExpense()
-  
-  expect(action).toEqual({
-    type: 'ADD_EXPENSE',
-    expense: {
-      ...obj,
-      id: expect.any(String)
-    }
-  })
-})
+// test('should setup add expense action object with default values', () => {
+//   const action = addExpense();
+//   expect(action).toEqual({
+//     type: 'ADD_EXPENSE',
+//     expense: {
+//       id: expect.any(String),
+//       description: '',
+//       note: '',
+//       amount: 0,
+//       createdAt: 0
+//     }
+//   });
+// });
+

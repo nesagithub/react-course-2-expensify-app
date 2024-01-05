@@ -1,42 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { removeExpense } from "../actions/expenses";
-import moment from "moment";
-import numeral from 'numeral'
+import moment from 'moment';
+import numeral from 'numeral';
 
-// const ExpenseListItem = (props) => {
-//   return (
-//     <div>
-//       <h2>{props.description}</h2>
-//       <p>id: <strong>{props.id}</strong></p>
-//       <p>{props.amount} - {props.createdAt}</p>
-//       <p>note:{props.note}</p>
-//       <button onClick={() => { props.dispatch(removeExpense({ id: props.id })) }}>Remove</button>
-//       <hr/>
-//     </div>
-//   )
-// }
-
-// destructured - isti primer
-// bez return - sa obicnim zagradama
-// da bi se imao pristup dispatch methodu potrebno je i on da bude destructed
-export const ExpenseListItem = ({ dispatch, id, amount, createdAt, description, note }) => (
+const ExpenseListItem = ({ id, description, amount, createdAt }) => (
   <div>
-    <h2>
-      <Link to={`/edit/${id}`}>{description}</Link>
-    </h2>
-    <p>id: <strong>{id}</strong></p>
+    <Link to={`/edit/${id}`}>
+      <h3>{description}</h3>
+    </Link>
     <p>
-    {numeral(amount/100).format('$0,0.00')} 
-     -  
-    {moment(createdAt).format('MMMM Do, YYYY')}
+      {numeral(amount / 100).format('$0,0.00')}
+      -
+      {moment(createdAt).format('MMMM Do, YYYY')}
     </p>
-    <p>{note}</p>
-    
-    <hr />
   </div>
-)
+);
 
-// ovde se radi connect da bi se imalo pristup dispthch metodu
-export default connect()(ExpenseListItem)
+export default ExpenseListItem;
